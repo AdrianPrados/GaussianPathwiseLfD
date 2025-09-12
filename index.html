@@ -176,9 +176,13 @@
 
 <section class="hero body">
   <div class="container is-max-desktop">
-    <img src="./static/images/ModulosAdam.png">
+    <img src="./static/images/EsquemaGeneral.jpg">
     <h2 class="subtitle has-text-centered">
-      General integration of the modules developed for ADAMSim.
+      General scheme of the method presented. First, kinesthetic data are acquired (time, position/orientation) and preprocessed to temporally align 
+      and encapsulate the demonstrations. Next, movement primitives are learned via Gaussian Processes: a heteroscedastic initialization of the mean 
+      and noise is computed from the demonstrations' envelope, an initial kernel is constructed, and hyperparameters are optimized automatically, 
+      yielding a prior over trajectories. Using this prior knowledge, a linear correction is applied via Pathwise Conditioning to the prior trajectory 
+      to enforce new via-points without retraining, locally preserving the learned primitive and its predictive uncertainty.
     </h2>
   </div>
 </section>
@@ -465,6 +469,7 @@
       </div>
     </div>
     <!-- Video Section -->
+
   <div class="container">
     <div class="columns is-centered">
       
