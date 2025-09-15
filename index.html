@@ -208,15 +208,17 @@
         </div>
       </div>
     </div>
-    <!--<div class="column">
-      <img src="./static/images/RealSim.png">
+    <div class="column">
+      <img src="./static/images/IntroPaper.jpg">
       <p class="subtitle has-text-centered">
-        (a) Learning a manipulation task from demonstrations using a real-sim-real pipeline, 
-        (b) Simultaneous navigation with ADAM real and simulated environments
+        (Example of the proposed algorithm for learning movement primitives using Gaussian Processes with subsequent adaptation through Pathwise 
+        Conditioning. With a single demonstration, movement primitives are learned via our LfD method and adapted in real time to new via-points using 
+        Pathwise Conditioning, which avoids re-learning the task or inverting covariance matrices, making it an efficient and fast method.
+
       </p>
     </div>
   </div>
-  </div>-->
+  </div>
 </section>
 
 
@@ -275,25 +277,30 @@
         <h2 class="title is-3">Method Description</h2>
         <div class="content has-text-justified">
           <p>
-            <strong>ADAMSim</strong> is structured in a modular fashion, allowing flexibility, scalability, and ease of integration with both simulated and real robotic systems. The core modules are:
+            In this work, we present an algorithm for task learning through movement primitives using Gaussian Processes (GPs) and the generalization of 
+            corrections without prior knowledge and in a fast manner through a zero-shot method based on Pathwise Conditioning. First, the Learning from 
+            Demonstration (LfD) process is carried out using GPs to learn movement primitives, which may include initial via-points to adapt to. After 
+            this, an adaptation to new positions and orientations of either known or new via-points is performed through Pathwise Conditioning. The 
+            method produces fast solutions that leverage the initial information, combining the learned policy with a new local policy for each situation,
+            thereby adjusting the overall task and avoiding the re-training process.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- Navigation Module -->
+    <!-- LfD with GPs description -->
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <div class="content has-text-justified">
           <p>
-            <strong>Navigation Module:</strong> Enables control of the mobile base, supporting both manual teleoperation and autonomous waypoint navigation. It includes continuous movement controllers, real-time odometry tracking, and customizable speed settings. Obstacle insertion and detection is also supported, allowing experiments with dynamic path planning.
+            <strong>Movement Primitive learning via Gaussian Processes:</strong> 
           </p>
         </div>
       </div>
     </div>
     <div class="container is-max-desktop">
       <div class="hero body">
-        <img src="./static/images/NavigationImg.jpg" alt="Navigation Module">
+        <img src="./static/images/GaussianMovementPrimitives.jpg" alt="Navigation Module">
         <p class="subtitle has-text-centered">
           (a) ADAM’s motion is defined by the linear velocity <em>v</em>, angular velocity <em>&omega;</em>, 
           and wheel velocities <em>v<sub>r</sub></em> and <em>v<sub>l</sub></em>. 
@@ -303,7 +310,7 @@
       </div>
     </div>
 
-    <!-- Arm and Hand Kinematics Module -->
+    <!-- Pathwise Conditioning  -->
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <div class="content has-text-justified">
@@ -461,7 +468,7 @@
     </div>
     <div class="container is-max-desktop">
       <div class="hero body">
-        <img src="./static/images/ExpComparison1.jpg" alt="Comaprison methods Lfd 1">
+        <img src="./static/images/ExpComparison1.jpg" alt="Comparison methods Lfd 1">
         <p class="subtitle has-text-centered">
           Diagram of the connections between the real model and the simulator through the created ROS bridge.
         </p>
