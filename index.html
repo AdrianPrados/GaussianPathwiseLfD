@@ -211,7 +211,7 @@
     <div class="column">
       <img src="./static/images/IntroPaper.jpg">
       <p class="subtitle has-text-centered">
-        (Example of the proposed algorithm for learning movement primitives using Gaussian Processes with subsequent adaptation through Pathwise 
+        Example of the proposed algorithm for learning movement primitives using Gaussian Processes with subsequent adaptation through Pathwise 
         Conditioning. With a single demonstration, movement primitives are learned via our LfD method and adapted in real time to new via-points using 
         Pathwise Conditioning, which avoids re-learning the task or inverting covariance matrices, making it an efficient and fast method.
 
@@ -293,7 +293,24 @@
       <div class="column">
         <div class="content has-text-justified">
           <p>
-            <strong>Movement Primitive learning via Gaussian Processes:</strong> 
+            <strong>Movement Primitive learning via Gaussian Processes:</strong> Our <em>Learning from Demonstration</em> (LfD) method leverages 
+            <strong>Gaussian Processes (GPs)</strong> to learn movement primitives 
+            from one or multiple human demonstrations.  
+            <br><br>
+            1. <strong>Primitive encapsulation:</strong> GPs represent movements in a non-parametric way, 
+            capturing both the mean trajectory and the <em>predictive uncertainty</em> at each time instant.  
+            <br>
+            2. <strong>Automatic adaptation:</strong> through heteroscedastic initialization and hyperparameter optimization, 
+            the model adapts to the variability of demonstrations without requiring fixed parameters.  
+            <br>
+            3. <strong>Via-points integration:</strong> mandatory waypoints are directly incorporated into the learning process, 
+            ensuring trajectories that pass through them.  
+            <br>
+            4. <strong>Flexible generalization:</strong> the model adapts in real time to new via-points using 
+            <em>Pathwise Conditioning</em>, avoiding retraining.  
+            <br><br>
+            This approach provides <strong>fast, efficient, and reliable solutions</strong>, combining the learned global policy 
+            with local adaptations to handle new tasks.
           </p>
         </div>
       </div>
