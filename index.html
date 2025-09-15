@@ -277,9 +277,9 @@
         <h2 class="title is-3">Method Description</h2>
         <div class="content has-text-justified">
           <p>
-            In this work, we present an algorithm for task learning through movement primitives using Gaussian Processes (GPs) and the generalization of 
-            corrections without prior knowledge and in a fast manner through a zero-shot method based on Pathwise Conditioning. First, the Learning from 
-            Demonstration (LfD) process is carried out using GPs to learn movement primitives, which may include initial via-points to adapt to. After 
+            In this work, we present an algorithm for task learning through movement primitives using <strong>Gaussian Processes (GPs)</strong> and the generalization of 
+            corrections without prior knowledge and in a fast manner through a zero-shot method based on <strong>Pathwise Conditioning</strong>. First, the <em>Learning from Demonstration</em>
+            (LfD) process is carried out using GPs to learn movement primitives, which may include initial via-points to adapt to. After 
             this, an adaptation to new positions and orientations of either known or new via-points is performed through Pathwise Conditioning. The 
             method produces fast solutions that leverage the initial information, combining the learned policy with a new local policy for each situation,
             thereby adjusting the overall task and avoiding the re-training process.
@@ -293,7 +293,7 @@
       <div class="column">
         <div class="content has-text-justified">
           <p>
-            <strong>Movement Primitive learning via Gaussian Processes:</strong> Our <em>Learning from Demonstration</em> (LfD) method leverages 
+            <strong>Movement Primitive learning via Gaussian Processes:</strong> Our LfD method leverages 
             <strong>Gaussian Processes (GPs)</strong> to learn movement primitives 
             from one or multiple human demonstrations.  
             <br><br>
@@ -310,19 +310,21 @@
             <em>Pathwise Conditioning</em>, avoiding retraining.  
             <br><br>
             This approach provides <strong>fast, efficient, and reliable solutions</strong>, combining the learned global policy 
-            with local adaptations to handle new tasks.
+            with local adaptations to handle new tasks. This method allows us to learn the initial policy. Although it generates efficient solutions, 
+            it is not fast enough to produce real-time adaptable responses. Therefore, a process is needed that does not require re-learning the tasks, 
+            but instead applies corrections that preserve part of the initial knowledge while adapting to variations in the via-points.
           </p>
         </div>
       </div>
     </div>
     <div class="container is-max-desktop">
       <div class="hero body">
-        <img src="./static/images/GaussianMovementPrimitives.jpg" alt="Navigation Module">
+        <img src="./static/images/GaussianMovementPrimitives.jpg" alt="GPs solutions">
         <p class="subtitle has-text-centered">
-          (a) ADAM’s motion is defined by the linear velocity <em>v</em>, angular velocity <em>&omega;</em>, 
-          and wheel velocities <em>v<sub>r</sub></em> and <em>v<sub>l</sub></em>. 
-          <em>&theta;</em> determines the robot’s orientation,
-          (b) Example of use of the Lidar information for navigation. Red color represents obstacles (purple and yellow boxes) in the ray casting.
+          Solutions of movement primitive learning via GPs in 2D (a) and 3D (b) environments with 3 via-points. To the right of each solution, 
+          the GP decomposition for each dimension is shown, where the shaded area represents the covariance. At the learned initial via-points, 
+          the passage is 100% certain (no shaded area is present), indicating that there is no uncertainty at the via-points, ensuring that the generated 
+          solution passes through these points.
         </p>
       </div>
     </div>
@@ -332,57 +334,36 @@
       <div class="column">
         <div class="content has-text-justified">
           <p>
-            <strong>Arm and Hand Kinematics Module:</strong> Provides full kinematic control of both arms and grippers. Users can command the robot using joint angles or Cartesian goals, with inverse kinematics and trajectory generation included. It supports both high-level (goal reaching) and low-level joint manipulation.
+            <strong>Adaptation to new situations via Pathwise Conditioning:</strong> Once we have learned the initial policy, we have encapsulated human knowledge and are able to reproduce it 
+            by passing through task-relevant points. The next step is to generate solutions that can adapt to changes that may occur in dynamic environments. 
+            Traditional GP regression requires retraining whenever via-points change, which is computationally expensive due to matrix inversions. To overcome 
+            these limitations, we have developed an algorithm based on <strong>Pathwise Conditioning</strong>, which applies corrections directly on sampled trajectories instead 
+            of retraining the GP.The method constructs corrected trajectories using a linear <strong>Matheron-style update</strong>, ensuring that the trajectory passes through 
+            new or modified via-points while preserving the probabilistic structure of the original GP. Corrections are local: areas far from the updated points 
+            remain almost unchanged, maintaining the overall shape of the learned primitive. This allows the initial policy knowledge to be retained while adding 
+            new information without retraining, combining it with prior knowledge to adapt the final solution to the new constraints.Our algorithm efficiently 
+            handles multidimensional tasks, including position and orientation, allowing trajectories to adapt in real time to new constraints. This makes 
+            Pathwise Conditioning ideal for interactive or zero-shot adjustments of movement primitives, even when the new via-points lie outside the original 
+            demonstration distribution.
+            
           </p>
         </div>
       </div>
     </div>
     <div class="container is-max-desktop">
       <div class="hero body">
-        <img src="./static/images/example_armposes.png" alt="Arm Kinematics Module">
+        <img src="./static/images/PathwiseExamples.jpg" alt="PathwiseExamples">
         <p class="subtitle has-text-centered">
-          Sequence of movements of the right arm passing through different waypoints with specific position and orientation.
+          GPs movement primitive learning with pathwise update in 2D and 3D with orientation. For the 2D example: (a) Prior solution with 2 via-points, (b) conditioned solution with 3 via-points in 
+          new positions, (c) prior GP for each dimension, (d) correction performed through Pathwise Conditioning to enforce passage through the new 
+          via-points, (e) final solution combining prior knowledge with the adapted component. For the 3D example: (f) Prior solution with 3 via-points and 1 demonstration, (g) conditioned solution with 3 
+          via-points in new positions and orientations (axes with arrows), (h) correction of prior knowledge through pathwise update in position, (i) correction 
+          of prior knowledge through pathwise update in orientation (we use quaternions). 
         </p>
       </div>
     </div>
 
-    <!-- Perception Module -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <div class="content has-text-justified">
-          <p>
-            <strong>Perception Module:</strong> Simulates onboard RGB-D sensors and provides synthetic visual data. This is ideal for training vision models and performing object detection, segmentation, and grasp planning using realistic 3D input.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="container is-max-desktop">
-      <div class="hero body">
-        <img src="./static/images/VisionExample.png" alt="Perception Module">
-        <p class="subtitle has-text-centered">
-          Example of vision with the RGB-D sensor. ADAMSim provides RGB information, depth, and segmented masks in a synthetic manner.
-        </p>
-      </div>
-    </div>
-
-    <!-- ROS Communication Module -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <div class="content has-text-justified">
-          <p>
-            <strong>ROS Communication Module:</strong> Creates a bridge between the simulated and real robots via ROS. This module allows for synchronized execution and bidirectional data transfer between ADAMSim and the physical ADAM robot, supporting both sim-to-real and real-to-sim experiments.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="container is-max-desktop">
-      <div class="hero body">
-        <img src="./static/images/ROS Scheme.png" alt="ROS Communication Module">
-        <p class="subtitle has-text-centered">
-          Diagram of the connections between the real model and the simulator through the created ROS bridge.
-        </p>
-      </div>
-    </div>
+    <!-- More models can be added here -->
   </div>
 </section>
 
