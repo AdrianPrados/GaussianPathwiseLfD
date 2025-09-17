@@ -486,7 +486,9 @@
         <div class="content has-text-justified">
           <p>
             To evaluate the efficiency of our method, we conducted a comparison against four different task generalization algorithms for both position 
-            and orientation, based on task parameters: TP-GPR, TP-GMM, TP-ProMP, and Synthetic-TP-GMM. The experiments rely on a single demonstration with 
+            and orientation, based on task parameters: <a href="https://calinon.ch/papers/Calinon-JIST2015.pdf" target="TPGPR">TP-GPR</a>, 
+            <a href="https://infoscience.epfl.ch/entities/publication/05a9740e-be18-420b-8c59-37add1ed248d/conferencedetails" target="GMM">TP-GMM</a>,<a href="https://proceedings.neurips.cc/paper_files/paper/2013/file/e53a0a2978c28872a4505bdb51db06dc-Paper.pdf" target="Pro">TP-ProMP</a>, 
+            and <a href="https://www.sciencedirect.com/science/article/pii/S0952197624004688" target="Sin">Synthetic-TP-GMM</a>. The experiments rely on a single demonstration with 
             constraints only at the endpoints. Both endpoints (blue U-Shape polygons) are modified in position and orientation to illustrate different 
             configurations of the solutions produced by each method. Several experiments were performed using a single demonstration while altering the 
             endpoint constraints. The tests are categorized as <em>final restriction near</em>, <em>final restriction far</em>, <em>both restrictions near</em> 
@@ -574,15 +576,31 @@
         </p>
       </div>
     </div>
-    <hr class="my-3">
+    <hr class="my-8">
 
     <!-- Tablas-->
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <div class="content has-text-justified">
           <p>
-            The compared methods do not satisfy the constraints when given a single demonstration or need synthetic data to achieve good solutions. 
-            Our method can generalize to the constraints imposed by the geometric descriptors at both endpoints in position and orientation.  
+            <strong>Quantitative Comparison Metrics:</strong> The compared methods do not satisfy the constraints when given a single demonstration or need synthetic data to achieve good solutions. 
+            Our method can generalize to the constraints imposed by the geometric descriptors at both endpoints in position and orientation. To perform the quantitative comparison, we defined several metrics
+            to evaluate the generalization capability. 
+            <em>Start Cosine Similarity</em> \( \cos(\theta_s) \) allows us to describe the initial direction of the trajectory 
+            and its alignment with the U-Shape descriptor at the entry, through the relation between the starting trajectory vector 
+            \( v_s \) and the entry vector of the U-Shape \( v_o \). 
+            The closer this value is to 1, the more optimal the alignment. 
+          </p>
+          <p>
+            <em>Goal Cosine Similarity</em> \( \cos(\theta_g) \) establishes the same criterion as the Start Cosine Similarity 
+            but for the trajectory’s arrival. For this, we obtain the vector \( v_g \) and compare it with the exit vector of the U-Shape \( v_e \). 
+            The closer this value is to 1, the more optimal the alignment.
+          </p>
+          <p>
+            Finally, we use <em>Endpoint Distance</em> \( D \), which evaluates whether both the starting and ending points of the trajectory 
+            reach the required endpoints without position error. 
+            This metric relies on the positions of the initial and final U-Shapes \( (P_s, P_e) \) and the initial and final trajectory values 
+            \( (\xi_s, \xi_g) \). The smaller this value, the better.  
           </p>
         </div>
       </div>
