@@ -74,6 +74,23 @@
     </div>
   </nav>
 
+  <!-- Estilo carrusel-->
+  <style>
+    .carousel { max-width: 700px; height: 420px; margin: auto; } /* fija altura */
+    .carousel .carousel-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* que la imagen ocupe toda la slide */
+    .carousel .is-background {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* o "cover" si quieres recortar */
+      display: block;
+    }
+    </style>
+
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -577,42 +594,52 @@
     <hr class="my-3">
 
     <!-- Carrusel con Bulma -->
-  <div class="container is-max-desktop">
-    <div class="carousel carousel-animated carousel-animate-slide" data-autoplay="false">
-      <div class="carousel-container">
-        <!-- Cada imagen es un item separado -->
-        <div class="carousel-item has-background is-active">
-          <img src="./static/images/ExpComparison1.jpg" alt="Imagen 1" />
+    <div class="container is-max-desktop">
+      <div class="carousel carousel-animated carousel-animate-slide" data-autoplay="false">
+        <div class="carousel-container">
+          <div class="carousel-item has-background is-active">
+            <img class="is-background" src="./static/images/ExpComparison1.jpg" alt="1">
+          </div>
+          <div class="carousel-item has-background">
+            <img class="is-background" src="./static/images/ExpComparison2.jpg" alt="2">
+          </div>
+          <!-- ...más items... -->
         </div>
-        <div class="carousel-item has-background">
-          <img src="./static/images/ExpComparison2.jpg" alt="Imagen 2" />
-        </div>
-      </div>
-
-      <!-- Flechas -->
-      <div class="carousel-navigation is-centered">
-        <div class="carousel-nav-left">
-          <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        </div>
-        <div class="carousel-nav-right">
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    
+        <div class="carousel-navigation is-centered">
+          <div class="carousel-nav-left"><i class="fa fa-chevron-left"></i></div>
+          <div class="carousel-nav-right"><i class="fa fa-chevron-right"></i></div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Script Bulma Carousel -->
-  <script src="./bulma-carousel.js"></script>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    bulmaCarousel.attach('.carousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,  // <--- aquí fuerzas que solo muestre 1 imagen
-      autoplay: false,  // quítalo si quieres que sea solo manual con flechas
-      infinite: true
+    
+    <script src="./bulma-carousel.js"></script>
+    <script>
+    function initCarousel() {
+      bulmaCarousel.attach('.carousel', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        autoplay: false,
+        infinite: true
+      });
+    }
+    
+    // Inicializar cuando las imágenes estén cargadas (evita slides vacíos/clones)
+    document.addEventListener('DOMContentLoaded', () => {
+      const imgs = Array.from(document.querySelectorAll('.carousel .is-background'));
+      let loaded = 0;
+      if (imgs.length === 0) { initCarousel(); return; }
+      imgs.forEach(img => {
+        if (img.complete) {
+          loaded++;
+          if (loaded === imgs.length) initCarousel();
+        } else {
+          img.addEventListener('load', () => { loaded++; if (loaded === imgs.length) initCarousel(); });
+          img.addEventListener('error', () => { loaded++; if (loaded === imgs.length) initCarousel(); });
+        }
+      });
     });
-  });
-  </script>
+    </script>
 
     <!-- More models can be added here -->
   </div>
