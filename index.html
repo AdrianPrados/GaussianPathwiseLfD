@@ -178,7 +178,7 @@
   <div class="container is-max-desktop">
     <img src="./static/images/EsquemaGeneral.jpg">
     <h2 class="subtitle has-text-centered">
-      General scheme of the method presented. First, kinesthetic data are acquired (time, position/orientation) and preprocessed to temporally align 
+      General scheme of our method. First, kinesthetic data are acquired (time, position/orientation) and preprocessed to temporally align 
       and encapsulate the demonstrations. Next, movement primitives are learned via Gaussian Processes: a heteroscedastic initialization of the mean 
       and noise is computed from the demonstrations' envelope, an initial kernel is constructed, and hyperparameters are optimized automatically, 
       yielding a prior over trajectories. Using this prior knowledge, a linear correction is applied via Pathwise Conditioning to the prior trajectory 
@@ -214,7 +214,6 @@
         Example of the proposed algorithm for learning movement primitives using Gaussian Processes with subsequent adaptation through Pathwise 
         Conditioning. With a single demonstration, movement primitives are learned via our LfD method and adapted in real time to new via-points using 
         Pathwise Conditioning, which avoids re-learning the task or inverting covariance matrices, making it an efficient and fast method.
-
       </p>
     </div>
   </div>
