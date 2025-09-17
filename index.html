@@ -578,21 +578,23 @@
 
     <!-- Carrusel con Bulma -->
   <div class="container is-max-desktop">
-    <div class="carousel carousel-animated carousel-animate-slide" data-autoplay="true">
+    <div class="carousel carousel-animated carousel-animate-slide" data-autoplay="false">
       <div class="carousel-container">
+        <!-- Cada imagen es un item separado -->
         <div class="carousel-item has-background is-active">
-          <img class="is-background" src="./static/images/ExpComparison1.jpg" alt="Imagen 1">
+          <img src="./static/images/ExpComparison1.jpg" alt="Imagen 1" />
         </div>
         <div class="carousel-item has-background">
-          <img class="is-background" src="./static/images/ExpComparison2.jpg" alt="Imagen 2">
+          <img src="./static/images/ExpComparison2.jpg" alt="Imagen 2" />
         </div>
         <div class="carousel-item has-background">
-          <img class="is-background" src="./static/images/ExpComparison3.jpg" alt="Imagen 3">
+          <img src="./static/images/ExpComparison3.jpg" alt="Imagen 3" />
         </div>
         <div class="carousel-item has-background">
-          <img class="is-background" src="./static/images/ExpComparison4.jpg" alt="Imagen 4">
+          <img src="./static/images/ExpComparison4.jpg" alt="Imagen 4" />
         </div>
       </div>
+
       <!-- Flechas -->
       <div class="carousel-navigation is-centered">
         <div class="carousel-nav-left">
@@ -611,9 +613,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     bulmaCarousel.attach('.carousel', {
       slidesToScroll: 1,
-      slidesToShow: 1,
-      autoplay: true,     // pasa automáticamente
-      pauseOnHover: true, // se pausa al pasar el ratón
+      slidesToShow: 1,  // <--- aquí fuerzas que solo muestre 1 imagen
+      autoplay: false,  // quítalo si quieres que sea solo manual con flechas
       infinite: true
     });
   });
