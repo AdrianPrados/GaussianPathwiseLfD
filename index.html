@@ -74,23 +74,6 @@
     </div>
   </nav>
 
-  <!-- Estilo carrusel-->
-  <style>
-    .carousel { max-width: 700px; height: 420px; margin: auto; } /* fija altura */
-    .carousel .carousel-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* que la imagen ocupe toda la slide */
-    .carousel .is-background {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* o "cover" si quieres recortar */
-      display: block;
-    }
-    </style>
-
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -593,54 +576,25 @@
     </div>
     <hr class="my-3">
 
-    <!-- Carrusel con Bulma -->
-    <div class="container is-max-desktop">
-      <div class="carousel carousel-animated carousel-animate-slide" data-autoplay="false">
-        <div class="carousel-container">
-          <div class="carousel-item has-background is-active">
-            <img class="is-background" src="./static/images/ExpComparison1.jpg" alt="1">
-          </div>
-        </div>
-        <div class="carousel-container">
-          <div class="carousel-item has-background is-active">
-            <img class="is-background" src="./static/images/ExpComparison2.jpg" alt="1">
-          </div>
-        </div>
-    
-        <div class="carousel-navigation is-centered">
-          <div class="carousel-nav-left"><i class="fa fa-chevron-left"></i></div>
-          <div class="carousel-nav-right"><i class="fa fa-chevron-right"></i></div>
+    <!-- Tablas-->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            The compared methods do not satisfy the constraints when given a single demonstration or need synthetic data to achieve good solutions. 
+            Our method can generalize to the constraints imposed by the geometric descriptors at both endpoints in position and orientation.  
+          </p>
         </div>
       </div>
     </div>
-    
-    <script src="./bulma-carousel.js"></script>
-    <script>
-    function initCarousel() {
-      bulmaCarousel.attach('.carousel', {
-        slidesToScroll: 1,
-        slidesToShow: 1,
-        autoplay: false,
-        infinite: true
-      });
-    }
-    
-    // Inicializar cuando las imágenes estén cargadas (evita slides vacíos/clones)
-    document.addEventListener('DOMContentLoaded', () => {
-      const imgs = Array.from(document.querySelectorAll('.carousel .is-background'));
-      let loaded = 0;
-      if (imgs.length === 0) { initCarousel(); return; }
-      imgs.forEach(img => {
-        if (img.complete) {
-          loaded++;
-          if (loaded === imgs.length) initCarousel();
-        } else {
-          img.addEventListener('load', () => { loaded++; if (loaded === imgs.length) initCarousel(); });
-          img.addEventListener('error', () => { loaded++; if (loaded === imgs.length) initCarousel(); });
-        }
-      });
-    });
-    </script>
+    <div class="container is-max-desktop">
+      <div class="hero body">
+        <img src="./static/images/ExpComparison4.jpg" alt="GPs solutions">
+        <p class="subtitle has-text-centered">
+        </p>
+      </div>
+    </div>
+    <hr class="my-3">
 
     <!-- More models can be added here -->
   </div>
