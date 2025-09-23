@@ -177,7 +177,7 @@
 <section class="hero body">
   <div class="container is-max-desktop">
     <img src="./static/images/EsquemaGeneral.jpg">
-    <h2 class="subtitle has-text-centered">
+    <h2 class="subtitle is-6 has-text-centered">
       General scheme of our method. First, kinesthetic data are acquired (time, position/orientation) and preprocessed to temporally align 
       and encapsulate the demonstrations. Next, movement primitives are learned via Gaussian Processes: a heteroscedastic initialization of the mean 
       and noise is computed from the demonstrations' envelope, an initial kernel is constructed, and hyperparameters are optimized automatically, 
@@ -210,7 +210,7 @@
     </div>
     <div class="column has-text-centered">
       <img src="./static/images/IntroPaper.jpg" style="max-width: 50%; height: auto;"> 
-      <p class="subtitle has-text-centered">
+      <p class="subtitle is-6 has-text-centered">
         Example of the proposed algorithm for learning movement primitives using Gaussian Processes with subsequent adaptation through Pathwise 
         Conditioning. With a single demonstration, movement primitives are learned via our LfD method and adapted in real time to new via-points using 
         Pathwise Conditioning, which avoids re-learning the task or inverting covariance matrices, making it an efficient and fast method.
@@ -319,7 +319,7 @@
     <div class="container is-max-desktop">
       <div class="hero body">
         <img src="./static/images/GaussianMovementPrimitives.jpg" alt="GPs solutions">
-        <p class="subtitle has-text-centered">
+        <p class="subtitle is-6 has-text-centered">
           Solutions of movement primitive learning via GPs in 2D (a) and 3D (b) environments with 3 via-points. To the right of each solution, 
           the GP decomposition for each dimension is shown, where the shaded area represents the covariance. At the learned initial via-points, 
           the passage is 100% certain (no shaded area is present), indicating that there is no uncertainty at the via-points, ensuring that the generated 
@@ -353,7 +353,7 @@
     <div class="container is-max-desktop">
       <div class="hero body">
         <img src="./static/images/PathwiseExamples.jpg" alt="PathwiseExamples">
-        <p class="subtitle has-text-centered">
+        <p class="subtitle is-6 has-text-centered">
           GPs movement primitive learning with pathwise update in 2D and 3D with orientation. For the 2D example: (a) Prior solution with 2 via-points, (b) conditioned solution with 3 via-points in 
           new positions, (c) prior GP for each dimension, (d) correction performed through Pathwise Conditioning to enforce passage through the new 
           via-points, (e) final solution combining prior knowledge with the adapted component. For the 3D example: (f) Prior solution with 3 via-points and 1 demonstration, (g) conditioned solution with 3 
@@ -531,7 +531,7 @@
     <div class="container is-max-desktop">
       <div class="hero body">
         <img src="./static/images/ExpComparison2.jpg" alt="GPs solutions">
-        <p class="subtitle has-text-centered">
+        <p class="subtitle is-6 has-text-centered">
         </p>
       </div>
     </div>
@@ -551,7 +551,7 @@
     <div class="container is-max-desktop">
       <div class="hero body">
         <img src="./static/images/ExpComparison3.jpg" alt="GPs solutions">
-        <p class="subtitle has-text-centered">
+        <p class="subtitle is-6 has-text-centered">
         </p>
       </div>
     </div>
@@ -607,7 +607,7 @@
     <div class="container is-max-desktop">
       <div class="hero body">
         <img src="./static/images/Tablas.png" alt="GPs solutions">
-        <p class="subtitle is-30 has-text-centered">
+        <p class="subtitle is-6 has-text-centered">
           Quantitative comparison of methods: Start Cosine, End Cosine, Endpoint Distance, and average time (four scenarios)
         </p>
       </div>
