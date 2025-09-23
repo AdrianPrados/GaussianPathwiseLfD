@@ -1,97 +1,621 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PR39LSGTSL"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PR39LSGTSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-PR39LSGTSL');
+  </script>
+  
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Task Generalization with Pathwise Conditioning of Gaussian Process for Learning from Demonstration">
+  <meta name="keywords" content="LearningfromDemonstration, Manipulation, Robot">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Generalization with Pathwise Conditioning of Gaussian Process for Learning from Demonstration</title>
 
-gtag('config', 'G-PR39LSGTSL');
-</script>
-<meta charset="utf-8">
-<meta name="description"
-content="Task Generalization with Pathwise Conditioning of Gaussian Process for Learning from Demonstration">
-<meta name="keywords" content="LearningfromDemonstration, Manipulation, Robot">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Task Generalization with Pathwise Conditioning of Gaussian Process for Learning from Demonstration</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
 
-
-<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-rel="stylesheet">
-
-
-<link rel="stylesheet" href="./static/css/bulma.min.css">
-<link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-<link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-<link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-<link rel="stylesheet" href="./static/css/index.css">
-<!-- <link rel="icon" href="./static/images/favicon.svg"> -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script defer src="./static/js/fontawesome.all.min.js"></script>
-<script src="./static/js/bulma-carousel.min.js"></script>
-<script src="./static/js/bulma-slider.min.js"></script>
-<script src="./static/js/index.js"></script>
-
-
-<style>
-/* Small adjustments so carousel images fit nicely */
-.carousel img { display:block; margin:0 auto; max-width:100%; max-height:420px; object-fit:contain; }
-.hero.body img { max-width:100%; height:auto; }
-</style>
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
-
 
 <body>
 
-
-<nav class="navbar" role="navigation" aria-label="main navigation">
-<div class="navbar-brand">
-<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-<span aria-hidden="true"></span>
-<span aria-hidden="true"></span>
-<span aria-hidden="true"></span>
-</a>
-</div>
-<div class="navbar-menu">
-<div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-<a class="navbar-item">
-<span class="icon">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"> <path fill="#808080" d="M320 0c17.7 0 32 14.3 32 32V96H472c39.8 0 72 32.2 72 72V440c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"/></svg>
-</span>
-</a>
-<div class="navbar-item has-dropdown is-hoverable">
-<a class="navbar-link">
-More Research
-</a>
-<div class="navbar-dropdown">
-<a class="navbar-item" href="" target="_blank">
-Future examples will be added
-</a>
-<a class="navbar-item" href="" target="_blank">
-Future examples will be added
-</a>
-</div>
-</div>
-</div>
-</div>
-</nav>
-
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"> <path fill="#808080" d="M320 0c17.7 0 32 14.3 32 32V96H472c39.8 0 72 32.2 72 72V440c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"/></svg>      
+        </span>
+        </a>
+  
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="" target="_blank">
+              Future examples will be added
+            </a>
+            <a class="navbar-item" href="" target="_blank">
+              Future examples will be added
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
 <section class="hero">
-<div class="hero-body">
-<div class="container is-max-desktop">
-<div class="columns is-centered">
-<div class="column has-text-centered">
-<img src="static/images/ICRALogo.png" alt="ICRA2026" style="width: 500px;;height:auto;">
-<h1 class="title is-1 publication-title">Task Generalization with Pathwise Conditioning of Gaussian Process for Learning from Demonstration</h1>
-</script>
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <img src="static/images/ICRALogo.png" alt="ICRA2026" style="width: 500px;;height:auto;">
+          <h1 class="title is-1 publication-title">Task Generalization with Pathwise Conditioning of Gaussian Process for Learning from Demonstration</h1>
+          <div class="is-size-5 publication-authors">
+
+            <span class="author-block">
+              <a href="" target="_blank"> First Author,</a>
+            </span>
+
+            <span class="author-block">
+              <a href="" target="_blank"> Second Author,</a>
+            </span>
+
+            <span class="author-block">
+              <a href="" target="_blank"> Third Author,</a>
+            </span>
+
+            <span class="author-block">
+              <a href="" target="_blank"> Fourth Author,</a>
+            </span>
+
+            <!--span class="author-block">
+              <a href="" target="_blank"> Author 6</a>
+            </span-->
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <a class="author-block" href="" target="_blank">Research Group for all of the publication-authors</a>
+          </div>
+
+          <!--div class="is-size-5 publication-authors">
+            <a class="author-block" href="" target="_blank">Laboratory 2</a>
+          </div-->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <!--<span class="link-block">
+                <a href="https://arxiv.org/abs/2403.12533" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>-->
+
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> 
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>GitHub</span>
+                </a>
+              </span>
+
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero body">
+  <div class="container is-max-desktop">
+    <img src="./static/images/EsquemaGeneral.jpg">
+    <h2 class="subtitle has-text-centered">
+      General scheme of our method. First, kinesthetic data are acquired (time, position/orientation) and preprocessed to temporally align 
+      and encapsulate the demonstrations. Next, movement primitives are learned via Gaussian Processes: a heteroscedastic initialization of the mean 
+      and noise is computed from the demonstrations' envelope, an initial kernel is constructed, and hyperparameters are optimized automatically, 
+      yielding a prior over trajectories. Using this prior knowledge, a linear correction is applied via Pathwise Conditioning to the prior trajectory 
+      to enforce new via-points without retraining, locally preserving the learned primitive and its predictive uncertainty.
+    </h2>
+  </div>
+</section>
+
+
+<!-- Abstract. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            To effectively operate in human-centered environments, robots must possess the capability to rapidly adapt to novel and changing situations. 
+            Techniques such as Learning from Demonstration enable fast learning without the need for explicit coding, however, in certain cases they 
+            exhibit limitations in generalizing beyond the set of demonstrations, which constrains their ability to rapidly adapt to unforeseen scenarios. 
+            In this work, we present a movement primitive learning algorithm based on Gaussian Processes, combined with a zero-shot adaptation to new 
+            via-points without requiring retraining, through Pathwise Conditioning. The algorithm not only learns the movement policy but is also capable 
+            of adapting it rapidly while preserving prior knowledge. The method has been evaluated through comparisons against other state-of-the-art 
+            approaches, experiments in simulated environments, as well as on a real robotic platform, generating new solutions for learned tasks by 
+            modifying via-points in both position and orientation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="column has-text-centered">
+      <img src="./static/images/IntroPaper.jpg" style="max-width: 50%; height: auto;"> 
+      <p class="subtitle has-text-centered">
+        Example of the proposed algorithm for learning movement primitives using Gaussian Processes with subsequent adaptation through Pathwise 
+        Conditioning. With a single demonstration, movement primitives are learned via our LfD method and adapted in real time to new via-points using 
+        Pathwise Conditioning, which avoids re-learning the task or inverting covariance matrices, making it an efficient and fast method.
+      </p>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+
+<!-- Abstract. -->
+<!--section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Robots can learn skills through a variety of methods, such as Learning from Demonstration (LfD) or Reinforcement Learning (RL). 
+            These methods typically learn some generalization capabilities, but cannot adapt quickly to large changes in the environment. 
+            We propose a novel adaptation method that combines LfD techniques with visual feedback to accurately adjust task execution. 
+            This method relies on learning a velocity map representation of the task from demonstrations, which encodes the general form of the skill. 
+            Then, this encoding can be adapted to learn a reproduction quickly using information detected visually from the environment. 
+            We perform our adaptation method in several real-world environments using a dual-arm robot platform.
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-narrow">
+            <img src="./static/images/IntroPaper.png" width="20%">
+            <p class="subtitle has-text-centered">
+              Our bimanual robot performing a task-oriented learning process to rearrange the table. 
+              The algorithm detects objects using the camera, calculates the optimal grasping points, 
+              and learns both the position and orientation of the entire task using the VASO algorithm, 
+              which learns the velocity space through demonstrations and adjusts the solution using the waypoints generalizing 
+              the learned model.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <<div class="container is-max-desktop">
+    <div class="hero body">
+      <video id="teaser" autoplay="autoplay" controls autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/IROS24-website.mp4" type="video/mp4">
+      </video>
+      <p class="subtitle has-text-centered">
+        ADRI AQUI METE EL VIDEO
+      </p>
+    </div>
+  </div>>
+</section-->
+
+
+
+<!-- methdo description -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Method Description</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this work, we present an algorithm for task learning through movement primitives using <strong>Gaussian Processes (GPs)</strong> and the generalization of 
+            corrections without prior knowledge and in a fast manner through a zero-shot method based on <strong>Pathwise Conditioning</strong>. First, the <em>Learning from Demonstration</em>
+            (LfD) process is carried out using GPs to learn movement primitives, which may include initial via-points to adapt to. After 
+            this, an adaptation to new positions and orientations of either known or new via-points is performed through Pathwise Conditioning. The 
+            method produces fast solutions that leverage the initial information, combining the learned policy with a new local policy for each situation,
+            thereby adjusting the overall task and avoiding the re-training process.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LfD with GPs description -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <strong>Movement Primitive learning via Gaussian Processes:</strong> Our LfD method leverages 
+            <strong>Gaussian Processes (GPs)</strong> to learn movement primitives 
+            from one or multiple human demonstrations.  
+            <br><br>
+            1. <strong>Primitive encapsulation:</strong> GPs represent movements in a non-parametric way, 
+            capturing both the mean trajectory and the <em>predictive uncertainty</em> at each time instant.  
+            <br>
+            2. <strong>Automatic adaptation:</strong> through heteroscedastic initialization and hyperparameter optimization, 
+            the model adapts to the variability of demonstrations without requiring fixed parameters.  
+            <br>
+            3. <strong>Via-points integration:</strong> mandatory waypoints are directly incorporated into the learning process, 
+            ensuring trajectories that pass through them.  
+            <br>
+            4. <strong>Flexible generalization:</strong> the model adapts in real time to new via-points using 
+            <em>Pathwise Conditioning</em>, avoiding retraining.  
+            <br><br>
+            This approach provides <strong>fast, efficient, and reliable solutions</strong>, combining the learned global policy 
+            with local adaptations to handle new tasks. This method allows us to learn the initial policy. Although it generates efficient solutions, 
+            it is not fast enough to produce real-time adaptable responses. Therefore, a process is needed that does not require re-learning the tasks, 
+            but instead applies corrections that preserve part of the initial knowledge while adapting to variations in the via-points.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="hero body">
+        <img src="./static/images/GaussianMovementPrimitives.jpg" alt="GPs solutions">
+        <p class="subtitle has-text-centered">
+          Solutions of movement primitive learning via GPs in 2D (a) and 3D (b) environments with 3 via-points. To the right of each solution, 
+          the GP decomposition for each dimension is shown, where the shaded area represents the covariance. At the learned initial via-points, 
+          the passage is 100% certain (no shaded area is present), indicating that there is no uncertainty at the via-points, ensuring that the generated 
+          solution passes through these points.
+        </p>
+      </div>
+    </div>
+    <hr class="my-3">
+
+    <!-- Pathwise Conditioning  -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <strong>Adaptation to new situations via Pathwise Conditioning:</strong> Once we have learned the initial policy, we have encapsulated human knowledge and are able to reproduce it 
+            by passing through task-relevant points. The next step is to generate solutions that can adapt to changes that may occur in dynamic environments. 
+            Traditional GP regression requires retraining whenever via-points change, which is computationally expensive due to matrix inversions. To overcome 
+            these limitations, we have developed an algorithm based on <strong>Pathwise Conditioning</strong>, which applies corrections directly on sampled trajectories instead 
+            of retraining the GP.The method constructs corrected trajectories using a linear <strong>Matheron-style update</strong>, ensuring that the trajectory passes through 
+            new or modified via-points while preserving the probabilistic structure of the original GP. Corrections are local: areas far from the updated points 
+            remain almost unchanged, maintaining the overall shape of the learned primitive. This allows the initial policy knowledge to be retained while adding 
+            new information without retraining, combining it with prior knowledge to adapt the final solution to the new constraints.Our algorithm efficiently 
+            handles multidimensional tasks, including position and orientation, allowing trajectories to adapt in real time to new constraints. This makes 
+            Pathwise Conditioning ideal for interactive or zero-shot adjustments of movement primitives, even when the new via-points lie outside the original 
+            demonstration distribution.
+            
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="hero body">
+        <img src="./static/images/PathwiseExamples.jpg" alt="PathwiseExamples">
+        <p class="subtitle has-text-centered">
+          GPs movement primitive learning with pathwise update in 2D and 3D with orientation. For the 2D example: (a) Prior solution with 2 via-points, (b) conditioned solution with 3 via-points in 
+          new positions, (c) prior GP for each dimension, (d) correction performed through Pathwise Conditioning to enforce passage through the new 
+          via-points, (e) final solution combining prior knowledge with the adapted component. For the 3D example: (f) Prior solution with 3 via-points and 1 demonstration, (g) conditioned solution with 3 
+          via-points in new positions and orientations (axes with arrows), (h) correction of prior knowledge through pathwise update in position, (i) correction 
+          of prior knowledge through pathwise update in orientation (we use quaternions). 
+        </p>
+      </div>
+    </div>
+
+    <!-- More models can be added here -->
+  </div>
+</section>
+
+<!-- Examples of the method. -->
+<!--section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Comparison of VASO against other methods</h2>
+        <div class="content has-text-justified">
+          <p>
+            To evaluate the performance of the VASO algorithm, a series of comparative experiments were conducted against state-of-the-art methods, 
+            including NDF, R-NDF, NIFT, and MIMO. While the former three relied on manually annotated datasets for training, VASO and MIMO 
+            did not require such annotations. All methods were trained and executed under the same hardware conditions, using an MSI Katana GF66 
+            with an Intel i7 CPU and RTX 3070 GPU, and were evaluated using a single fixed camera viewpoint to match real-world conditions. 
+            Two demonstration settings were tested: one-shot learning with a single demonstration (D1) and learning from multiple demonstrations (D10). 
+            VASO utilized kinesthetic demonstrations, while others relied on visual data. The experiments covered six pick-and-place tasks involving 
+            novel objects in varying positions and orientations. Performance was assessed through grasp success (G<sub>s</sub>), placement success (P<sub>s</sub>), 
+            and overall task success (O<sub>s</sub>), along with angular error between the predicted and ideal poses. Across all tasks, VASO consistently 
+            outperformed the other methods in both D1 and D10 settings, showing higher success rates and lower angular error. Notably, it achieved robust 
+            performance regardless of the number of demonstrations, highlighting its reliability for tasks requiring both positional and orientational 
+            precision.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <img src="./static/images/Tabla.png">
+      <p class="subtitle has-text-centered">
+        Success rates among the compared methods for different manipulation tasks with unseen objects. It can be seen how our method VASO generate better results 
+        than the other methods, even with only one demonstration. The method MIMO is the only one that can be compared with VASO, but it needs 10 demonstrations to
+        achieve similar results.
+      </p>
+    </div>
+    <!-- Video Section -->
+  <!-- <div class="container">
+    <div class="columns is-multiline is-centered">
+      
+      
+      <div class="column is-one-quarter">
+        <figure class="image is-16by9">
+          <video controls>
+            <source src="./static/videos/Exp1IIWA.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <p class="has-text-centered">Example 1: Opposite movements without obstacles.</p>
+      </div>
+
+      
+      <div class="column is-one-quarter">
+        <figure class="image is-16by9">
+          <video controls>
+            <source src="./static/videos/Exp2IIWA.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <p class="has-text-centered">Example 2: Opposite movements with 1 obstacles.</p>
+      </div>
+
+      
+      <div class="column is-one-quarter">
+        <figure class="image is-16by9">
+          <video controls>
+            <source src="./static/videos/Exp3IIWA.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <p class="has-text-centered">Example 3: Opposite movements with 5 obstacles (narrow passage).</p>
+      </div>
+
+      
+      <div class="column is-one-quarter">
+        <figure class="image is-16by9">
+          <video controls>
+            <source src="./static/videos/Exp4IIWA.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <p class="has-text-centered">Example 4: Obstacle in final point.</p>
+      </div> >
+
+    </div>
+  </div>
+  </div>
+</section-->
+
+<!-- methdo description -->
+<!--section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Comparison against other LfD methods</h2>
+        <div class="content has-text-justified">
+          <p>
+            <strong>Case 4: Far initial and final restrictions: </strong> in this scenario, the goal and the initial U-Shape geometric descriptors are shifted to a further position with a rotation
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="hero body">
+        <img src="./static/images/ExpComparison1.jpg" alt="Comparison methods Lfd 1">
+        <p class="subtitle has-text-centered">
+          Diagram of the connections between the real model and the simulator through the created ROS bridge.
+        </p>
+      </div>
+    </div>
+  </div>
+</section-->
+
+
+<!-- Comparison methods LfD -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Comparison against other LfD methods</h2>
+        <div class="content has-text-justified">
+          <p>
+            To evaluate the efficiency of our method, we conducted a comparison against four different task generalization algorithms for both position 
+            and orientation, based on task parameters: <a href="https://calinon.ch/papers/Calinon-JIST2015.pdf" target="TPGPR">TP-GPR</a>, 
+            <a href="https://infoscience.epfl.ch/entities/publication/05a9740e-be18-420b-8c59-37add1ed248d/conferencedetails" target="GMM">TP-GMM</a>,<a href="https://proceedings.neurips.cc/paper_files/paper/2013/file/e53a0a2978c28872a4505bdb51db06dc-Paper.pdf" target="Pro">TP-ProMP</a>, 
+            and <a href="https://www.sciencedirect.com/science/article/pii/S0952197624004688" target="Sin">Synthetic-TP-GMM</a>. The experiments rely on a single demonstration with 
+            constraints only at the endpoints. Both endpoints (blue U-Shape polygons) are modified in position and orientation to illustrate different 
+            configurations of the solutions produced by each method. Several experiments were performed using a single demonstration while altering the 
+            endpoint constraints. The tests are categorized as <em>final restriction near</em>, <em>final restriction far</em>, <em>both restrictions near</em> 
+            and <em>restrictions far</em>, with orientation modified in all cases.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experiment 1-->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <strong>Experiment 1: Final restriction near:</strong> In this scenario, the goal U-Shape geometric descriptor is shifted to a nearby 
+            position with a rotation, while the initial descriptor remains unchanged.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="hero body">
+        <img src="./static/images/ExpComparison1.jpg" alt="GPs solutions">
+        <p class="subtitle has-text-centered">
+        </p>
+      </div>
+    </div>
+    <hr class="my-3">
+
+    <!-- Experiment 2-->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <strong>Experiment 2: Final restriction far:</strong> In this scenario, the goal U-Shape geometric descriptor is shifted to a further 
+            position with a rotation, while the initial descriptor remains unchanged.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="hero body">
+        <img src="./static/images/ExpComparison2.jpg" alt="GPs solutions">
+        <p class="subtitle has-text-centered">
+        </p>
+      </div>
+    </div>
+    <hr class="my-3">
+
+    <!-- Experiment 3-->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <strong>Experiment 3: Both restrictions near:</strong> In this scenario, the goal and the initial U-Shape geometric descriptors are 
+            shifted to a new near position with a rotation
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="hero body">
+        <img src="./static/images/ExpComparison3.jpg" alt="GPs solutions">
+        <p class="subtitle has-text-centered">
+        </p>
+      </div>
+    </div>
+    <hr class="my-3">
+
+    <!-- Experiment 4-->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <strong>Experiment 4: Far initial and final restrictions:</strong> In this scenario, the goal and the initial U-Shape geometric descriptors are 
+            shifted to a further position with a rotation
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="hero body">
+        <img src="./static/images/ExpComparison4.jpg" alt="GPs solutions">
+        <p class="subtitle has-text-centered">
+        </p>
+      </div>
+    </div>
+    <hr class="my-8">
+
+    <!-- Tablas-->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <strong>Quantitative Comparison Metrics:</strong> The compared methods do not satisfy the constraints when given a single demonstration or need synthetic data to achieve good solutions. 
+            Our method can generalize to the constraints imposed by the geometric descriptors at both endpoints in position and orientation. To perform the quantitative comparison, we defined several metrics
+            to evaluate the generalization capability.
+            <br> 
+            <em>Start Cosine Similarity</em> (cos(θs)) allows us to describe the initial direction of the trajectory 
+            and its alignment with the U-Shape descriptor at the entry, through the relation between the starting trajectory vector 
+            (vs) and the entry vector of the U-Shape (vo). 
+            The closer this value is to 1, the more optimal the alignment. 
+            <br>
+            <em>Goal Cosine Similarity</em> (cos(θg)) establishes the same criterion as the Start Cosine Similarity 
+            but for the trajectory’s arrival. For this, we obtain the vector (vg) and compare it with the exit vector of the U-Shape (ve). 
+            The closer this value is to 1, the more optimal the alignment.
+            <br>
+            
+            Finally, we use <em>Endpoint Distance</em> (D), which evaluates whether both the starting and ending points of the trajectory 
+            reach the required endpoints without position error. 
+            This metric relies on the positions of the initial and final U-Shapes (Ps, Pe) and the initial and final trajectory values 
+            (ξs, ξg ). The smaller this value, the better.  
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <div class="hero body">
+        <img src="./static/images/ExpComparison4.jpg" alt="GPs solutions">
+        <p class="subtitle has-text-centered">
+        </p>
+      </div>
+    </div>
+    <hr class="my-3">
+
+    <!-- More models can be added here -->
+  </div>
+</section>
 
 
 
