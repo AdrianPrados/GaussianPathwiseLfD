@@ -620,17 +620,30 @@
 
 
 
-<!-- Experiments -->
-<!--section class="section">
+<!-- Real world experiements -->
+<section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Simulation and Experiments</h2>
+        <h2 class="title is-3">Real world experiments</h2>
         <div class="content has-text-justified">
           <p>
-            To evaluate the efficiency of our method, we conducted both quantitative and qualitative experiments. Tests were conducted against several 
-            state-of-the-art methods to evaluate its performance. In addition, we carried out different efficiency evaluations in real tasks using a 
-            IIWA robotic arm and a mobile bimanipulator robot, both in simulation through PyBullet and in a real-world environment.
+            Different experiments have been carried out to demonstrate the efficiency of the method with a real robot, where key task points were varied 
+            in real time. The tasks performed are: <em>bottle pick and place</em>, <em>serving simulation</em> , <em>repositioning a book on a shelf</em>
+            and <em>placing objects inside a box.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-5">Experiment 1: bottle pick and place</h2>
+        <div class="content has-text-justified">
+          <p>
           </p>
         </div>
       </div>
@@ -644,103 +657,29 @@
       <div class="column is-half">
         <figure class="image is-16by9">
           <video controls>
-            <source src="./static/videos/ADAMsim_manipulation.mp4" type="video/mp4">
+            <source src="./static/videos/DemosLeche.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </figure>
-        <p class="has-text-centered">Manipulation with LfD method of real and simulated objects.</p>
+        <p class="subtitle is-6 has-text-centered">A single demonstration of how the robot has to pick and place the milk carton</p>
       </div>
 
       
       <div class="column is-half">
         <figure class="image is-16by9">
           <video controls>
-            <source src="./static/videos/ADAMsim_navigation.mp4" type="video/mp4">
+            <source src="./static/videos/PickAndPlace_leche.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </figure>
-        <p class="has-text-centered">Simultaneous navigation using the real and the simulated ADAM.</p>
+        <p class="subtitle is-6 has-text-centered">Here is an example of how the method correct the learned policy in real time while the human moves the relevant objects</p>
       </div>
 
     </div>
   </div>
-
-  <div class="container">
-    <div class="columns is-centered">
-      
-      
-      <div class="column is-half">
-        <figure class="image is-16by9">
-          <video controls>
-            <source src="./static/videos/example_arms.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </figure>
-        <p class="has-text-centered">Moving arms and hands simultaneously in simulated environment.</p>
-      </div>
-
-      
-      <div class="column is-half">
-        <figure class="image is-16by9">
-          <video controls>
-            <source src="./static/videos/example_camera.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </figure>
-        <p class="has-text-centered">Camera information obtained from ADAMSim</p>
-      </div>
-
-    </div>
   </div>
 
-  <div class="container">
-    <div class="columns is-centered">
-      
-      
-      <div class="column is-half">
-        <figure class="image is-16by9">
-          <video controls>
-            <source src="./static/videos/example_hands.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </figure>
-        <p class="has-text-centered">Robotic hands simulated grasping and moving a simulated bottle</p>
-      </div>
-
-      
-      <div class="column is-half">
-        <figure class="image is-16by9">
-          <video controls>
-            <source src="./static/videos/example_sliders.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </figure>
-        <p class="has-text-centered">Teleoperation of the arms and hands using sliders.</p>
-      </div>
-
-    </div>
-
-    <div class="container">
-      <div class="columns is-centered">
-        
-        
-        <div class="column is-half">
-          <figure class="image is-16by9">
-            <video controls>
-              <source src="./static/videos/example_navigation.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </figure>
-          <p class="has-text-centered">Teleoperation of the robot base and detection of simulated boxes with the 2D Lidar</p>
-        </div>
-  
-      </div>
-  </div>
-  </div>
-
-  
-
-</section>-->
+</section>
 
 
 <footer class="footer">
