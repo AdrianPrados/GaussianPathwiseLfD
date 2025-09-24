@@ -639,42 +639,44 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- título + descripción -->
-    <div class="columns is-centered">
+    <!-- título/descr -->
+    <div class="columns">
       <div class="column">
         <h2 class="title is-5" style="margin-bottom: 0.25rem;">Experiment 1: bottle pick and place</h2>
-        <p class="content" style="margin-top: 0.25rem; margin-bottom: 0.5rem;">
-          The robot has to put the bottle over the box, and the human can move both the bottle and the box to new positions and orientations.
+        <p style="margin-top: 0.25rem; margin-bottom: 0.5rem;">
+          The robot has to put the bottle over the box, and the human can move both the bottle and the box...
         </p>
       </div>
     </div>
 
-    <!-- vídeos en una sola fila -->
-    <div class="columns is-multiline" style="margin-top: 0;">
-      <div class="column is-half">
-        <figure class="image is-16by9" style="margin-bottom: 0;">
-          <video controls style="display:block; width:100%; height:100%;">
-            <source src="./static/videos/DemosLeche.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </figure>
-        <p class="subtitle is-6 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0;">
-          A single demonstration of how the robot has to pick and place the milk carton
-        </p>
-      </div>
+    <!-- hero con columnas (quita paddings innecesarios) -->
+    <section class="hero is-small" style="background:transparent;">
+      <div class="hero-body" style="padding: 0;">
+        <div class="columns is-multiline is-variable is-1">
+          <div class="column is-half">
+            <figure class="image is-16by9" style="margin: 0;">
+              <video controls muted loop playsinline style="display:block; width:100%; height:100%; object-fit:cover;">
+                <source src="./static/videos/DemosLeche.mp4" type="video/mp4">
+              </video>
+            </figure>
+            <p class="subtitle is-6 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0;">
+              A single demonstration of how the robot...
+            </p>
+          </div>
 
-      <div class="column is-half">
-        <figure class="image is-16by9" style="margin-bottom: 0;">
-          <video controls style="display:block; width:100%; height:100%;">
-            <source src="./static/videos/PickAndPlace_leche.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </figure>
-        <p class="subtitle is-6 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0;">
-          Here is an example of how the method correct the learned policy in real time while the human moves the relevant objects
-        </p>
+          <div class="column is-half">
+            <figure class="image is-16by9" style="margin: 0;">
+              <video controls muted loop playsinline style="display:block; width:100%; height:100%; object-fit:cover;">
+                <source src="./static/videos/PickAndPlace_leche.mp4" type="video/mp4">
+              </video>
+            </figure>
+            <p class="subtitle is-6 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0;">
+              Example of how the method corrects the learned policy...
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 </section>
 
