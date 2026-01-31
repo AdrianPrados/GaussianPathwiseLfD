@@ -1,0 +1,19 @@
+tests/
+Adam_sim/
+CodigosOld/
+examples/
+aruco2pybullet/
+
+# Codigos elimiandos
+2_minimizing_sample_paths.py
+AAAA.py
+BBBBBBB.py
+FullBodyAvoidance.py
+InteractiveFullBodyAvoidance.py
+InteractiveObsPWGMP_2D.py
+InteractiveObsPWGMP_3D.py
+ObsPWGMP_2D.py
+ObsPWGMP_3D.py
+preubaAvodiance.py
+testCollisions.py
+VelocityObs.py
