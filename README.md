@@ -28,18 +28,8 @@ git clone https://github.com/AdrianPrados/GaussianPathwiseLfD.git
 To completely use our code, you need to take a look to this other codes :
 - [`ADAMSim`](https://github.com/Mobile-Robots-Group-UC3M/AdamSim): Simulator for the ADAM bimanipulator robot in PyBullet. Exact model of the real robot ADAM. This repository contains the URDF files and the necessary code to simulate the robot in PyBullet.
 - [`ArucoDetection`](https://github.com/Mobile-Robots-Group-UC3M/ArucoDetection): Code for the detection of ArUco markers using OpenCV. This repository contains the necessary code to detect ArUco markers in images and estimate their pose. This repo contains a small code to transform the marker to PyBullet coordinates.
-- [`Pathwise Conditionin`](https://github.com/j-wilson/GPflowSampling): Implementation of Pathwise Conditioning for Gaussian Processes using GPflow. This repository contains the necessary code to perform Pathwise Conditioning on Gaussian Processes using the GPflow library.
+- [`Pathwise Conditioning`](https://github.com/j-wilson/GPflowSampling): Implementation of Pathwise Conditioning for Gaussian Processes using GPflow. This repository contains the necessary code to perform Pathwise Conditioning on Gaussian Processes using the GPflow library.
 
-<!-- # **Code Organization**
-The code present some example of uses:
-- [`factor_graphs`](/factor_graphs/): It contains the necessary files for the generation of communication graphs. These implementations establish the creation of the graphs, the generation of factor graphs, and the creation of Gaussian variables for the communication of Gaussian Belief Propagation.
-- [`motionGBP`](/motionGBP/): They contain the generation of factors, nodes, and obstacles for GBP. The files are divided into 2D and 3D.
-- [`Adam_sim`](/Adam_sim/): It contains the models of the ADAM bimanipulator robot, which can be used for simulations in PyBullet.
-> [!CAUTION]  
-> The simulator for Adam is not fully completed, we have just uploaded in this repository a beta version.
-
-> [!NOTE]  
-> The code for the Learning from Demosntration part is not included in this repository. If you are interested in this part, please visit this repository: [TP-GMM with few demonstrations](https://github.com/AdrianPrados/Learning-and-generalization-of-task-parameterized-skills-through-few-human-demonstrations) -->
 # **Algorithm execution**
 In this repo we present a series of examples to show the functionality of the algorithm. The main files are:
 - [`PathwiseGMP_2D.py`](./PathwiseGMP_2D.py): Example of the 2D functionality of the Pathwise Gaussian Movement Primitives. A set of demonstrations is provided, and the algorithm learns the movement and adapts it to new via-points.
