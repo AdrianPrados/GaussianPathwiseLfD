@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# GPflow / ProGP imports (igual que los tuyos)
+# GPflow / ProGP imports
 import tensorflow as tf
 from scipy.io import loadmat
 from gpflow import kernels
@@ -19,7 +19,7 @@ from ProGP import ProGpMp
 import pybullet as p
 import pybullet_data
 
-# Intento importar ADAM
+
 try:
     from Adam_sim.scripts.adam import ADAM
     ADAM_AVAILABLE = True
@@ -27,7 +27,7 @@ except Exception as e:
     print("Warning: scripts.adam import failed:", e)
     ADAM_AVAILABLE = False
 
-ADAM_URDF_PATH = "/home/adrian/Escritorio/ImitationLearning/GPFlow/FlowGMP/Adam_sim/models/robot/rb1_base_description/robots/robotDummy.urdf"
+ADAM_URDF_PATH = "/home/adrian/Escritorio/ImitationLearning/GPFlow/FlowGMP/Adam_sim/models/robot/rb1_base_description/robots/robotDummy.urdf" #! change to your path to URDF file for ADAM urdf
 
 # ---------- Globals ----------
 last_changed = None
